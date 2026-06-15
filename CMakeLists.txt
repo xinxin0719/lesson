@@ -6,3 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file(GLOB SRC src/*.cpp)
 add_executable(lesson ${SRC})
+add_compile_options(/utf-8)

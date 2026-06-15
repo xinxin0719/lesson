@@ -3,16 +3,13 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "C://Users//cyxy//Downloads//Compressed//mingw32//include//**",
-                "C://Users//cyxy//Downloads//Compressed//mingw32//lib//gcc//i686-w64-mingw32//16.1.0//include//**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "C:\\Users\\cyxy\\Downloads\\Compressed\\mingw32\\bin\\g++.exe",
             "cStandard": "c23",
             "intelliSenseMode": "windows-gcc-x64",
             "cppStandard": "c++26"

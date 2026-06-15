@@ -2,9 +2,9 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "cmake",
+			"type": "shell",
 			"label": "CMake: build",
-			"command": "build",
+			"command": "cmake -S . -B build ; cmake --build build",
 			"group": {
 				"kind": "build",
 				"isDefault": true

@@ -1,5 +1,5 @@
-#include <print>
+#include "user.h"
 
 int main() {
-    std::print("123");
+    sysOpera();
 }

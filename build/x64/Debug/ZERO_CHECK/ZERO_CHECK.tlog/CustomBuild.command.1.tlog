@@ -1,0 +1,10 @@
+^C:\USERS\CYXY\DESKTOP\LESSON\BUILD\CMAKEFILES\E3A2604E67B0F75294057EAD3F782452\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/cyxy/Desktop/lesson -BC:/Users/cyxy/Desktop/lesson/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/cyxy/Desktop/lesson/build/lesson.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

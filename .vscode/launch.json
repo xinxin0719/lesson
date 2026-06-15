@@ -8,7 +8,7 @@
             "name": "debug",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "program": "${workspaceRoot}\\build\\Debug\\lesson.exe",
             "cwd": "${workspaceRoot}",
             "preLaunchTask": "CMake: build"
         }

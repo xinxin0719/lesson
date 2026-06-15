@@ -4,4 +4,4 @@ project(lesson)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(lesson main.cpp)
+add_executable(lesson src/main.cpp)

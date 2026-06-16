@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceRoot}\\build\\Debug\\lesson.exe",
             "cwd": "${workspaceRoot}",
-            "console": "externalTerminal",
+            "console": "integratedTerminal",
             "preLaunchTask": "CMake: build"
         }
     ]

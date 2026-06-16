@@ -9,24 +9,67 @@
 #include <cstdlib>
 #include <Windows.h>
 #include <limits>
+#include <string>
 
 #include "terminal.hpp"
 
 void sysOpera() {
     start:
-    std::println("操作选项:\n    0.退出\n    1.注册    \n    2.登录\n    3.修改个人信息");
+    std::println("操作选项：\n    0.退出\n    1.注册    \n    2.登录\n    3.修改个人信息");
     int n;
+    std::print("请输入操作码：");
     if (std::cin >> n) {
-
+        if (n == 0) {
+            return;
+        } else {
+            switch (n)
+            {
+            case 1:
+            {
+                std::string name, password, confirmPassword;
+                std::print("\n请输入用户名：");
+                std::cin >> name;
+                resetPassword:
+                std::print("请输入密码：");
+                std::cin >> password;
+                std::print("请确认密码：");
+                std::cin >> confirmPassword;
+                if (password != confirmPassword) {
+                    std::print("两次输入密码不一致");
+                    Sleep(1000);
+                    std::print("\033[2A\r\033[J");
+                    goto resetPassword;
+                } else {
+                    std::println("注册完成");
+                    for (float i = 3; i >= 0; i -= 0.1) {
+                        std::print("\r  {:.1f}s后继续", i);
+                        Sleep(100);
+                    }
+                    std::print("\033[H\033[J");
+                    goto start;
+                }
+                break;
+            }
+            
+            default:
+                std::println("请输入有效的操作。");
+                for (float i = 3; i >= 0; i -= 0.1) {
+                    std::print("\r  {:.1f}s后重试", i);
+                    Sleep(100);
+                }
+                std::print("\033[H\033[J");
+                goto start;
+            }
+        }
     } else {
-        std::println("请输入有效的操作");
-        for (int i = 3; i >= 0; i--) {
-            std::print("{}", i);
-            Sleep(1000);
+        std::println("请输入有效的操作。");
+        for (float i = 3; i >= 0; i -= 0.1) {
+            std::print("\r  {:.1f}s后重试", i);
+            Sleep(100);
         }
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        system("cls");
+        std::print("\033[H\033[J");
         goto start;
     }
 }

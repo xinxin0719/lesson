@@ -7,14 +7,20 @@
 #include <print>
 #include <iostream>
 #include <cstdlib>
-#include <Windows.h>
 #include <limits>
 #include <string>
+#include <fstream>
 
 #include "terminal.hpp"
+#include "../thirdparty/nlohmann/json.hpp"
 
 void sysOpera() {
+    using json = nlohmann::json;
+    json datas = json::array();
+    const std::string userFilePath = "./data/user.json";
     start:
+    std::ifstream in(userFilePath);
+    in >> datas;
     std::println("操作选项：\n    0.退出\n    1.注册    \n    2.登录\n    3.修改个人信息");
     int n;
     std::print("请输入操作码：");
@@ -41,6 +47,10 @@ void sysOpera() {
                     goto resetPassword;
                 } else {
                     std::println("注册完成");
+                    datas.push_back({{"name", name}, {"password", password}});
+                    std::println("\ndatas = {}", datas.dump(2));
+                    std::ofstream out(userFilePath);
+                    out << datas.dump(2);
                     for (float i = 3; i >= 0; i -= 0.1) {
                         std::print("\r  {:.1f}s后继续", i);
                         Sleep(100);

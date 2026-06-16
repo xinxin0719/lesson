@@ -33,8 +33,17 @@ void sysOpera() {
             case 1:
             {
                 std::string name, password, confirmPassword;
+                resetName:
                 std::print("\n请输入用户名：");
                 std::cin >> name;
+                for (const auto& user : datas) {
+                    if (user["name"] == name) {
+                        std::println("用户名已存在");
+                        Sleep(1000);
+                        std::print("\033[3A\033[J");
+                        goto resetName;
+                    }
+                }
                 resetPassword:
                 std::print("请输入密码：");
                 std::cin >> password;
@@ -48,7 +57,6 @@ void sysOpera() {
                 } else {
                     std::println("注册完成");
                     datas.push_back({{"name", name}, {"password", password}});
-                    std::println("\ndatas = {}", datas.dump(2));
                     std::ofstream out(userFilePath);
                     out << datas.dump(2);
                     for (float i = 3; i >= 0; i -= 0.1) {

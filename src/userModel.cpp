@@ -71,7 +71,7 @@ void signIn(nlohmann::json datas, const std::string userFilePath) {
                     return;
                 }
                 if (user["password"] == password) {
-                    //home();
+                    home(name);
                     return;
                 } else {
                     std::println("  密码错误");

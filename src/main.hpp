@@ -6,4 +6,6 @@
 
 void sysOpera();
 bool pathExist(const std::string& path);
-void userModel(nlohmann::json datas, const std::string userFilePath);
+void signUp(nlohmann::json datas, const std::string userFilePath);
+void signIn(nlohmann::json datas, const std::string userFilePath);
+void resetPassword(nlohmann::json datas, const std::string userFilePath);

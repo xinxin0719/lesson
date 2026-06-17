@@ -22,7 +22,7 @@ void sysOpera() {
     const std::string userFilePath = "./data/user.json";
     while (true) {
         std::print("\033[H\033[J");
-        std::println("操作选项：\n    0.退出\n    1.注册\n    2.登录\n    3.修改个人信息");
+        std::println("操作选项：\n    0.退出\n    1.注册\n    2.登录\n    3.修改密码");
         std::print("请输入操作码：");
         if (std::cin >> opera) {
             if (opera == 0) {
@@ -32,15 +32,17 @@ void sysOpera() {
                 {
                 case 1:
                 {
-                    userModel(datas, userFilePath);
+                    signUp(datas, userFilePath);
                     break;
                 }
                 case 2:
                 {
+                    signIn(datas, userFilePath);
                     break;
                 }
                 case 3:
                 {
+                    resetPassword(datas, userFilePath);
                     break;
                 }
                 

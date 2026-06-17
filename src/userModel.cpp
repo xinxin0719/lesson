@@ -7,11 +7,10 @@
 #include "main.hpp"
 #include "../thirdparty/nlohmann/json.hpp"
 
-void userModel(nlohmann::json datas, const std::string userFilePath) {
+void signUp(nlohmann::json datas, const std::string userFilePath) {
     std::ifstream in(userFilePath);
     in >> datas;
-    std::string name;
-    int password, confirmPassword;
+    std::string name, password, confirmPassword;
     resetName:
     std::print("\n请输入用户名（输入0取消）：");
     std::cin >> name;
@@ -29,12 +28,12 @@ void userModel(nlohmann::json datas, const std::string userFilePath) {
     resetPassword:
     std::print("请输入密码（输入0取消）：");
     std::cin >> password;
-    if (password == 0) {
+    if (password == "0") {
         return;
     }
     std::print("请确认密码（输入0取消）：");
     std::cin >> confirmPassword;
-    if (confirmPassword == 0) {
+    if (confirmPassword == "0") {
         return;
     }
     if (password != confirmPassword) {
@@ -52,4 +51,83 @@ void userModel(nlohmann::json datas, const std::string userFilePath) {
             Sleep(100);
         }
     }
+}
+
+void signIn(nlohmann::json datas, const std::string userFilePath) {
+    std::string name, password;
+    std::print("\n请输入用户名（输入0取消）：");
+    std::cin >> name;
+    if (name == "0") {
+        return;
+    }
+    std::ifstream in(userFilePath);
+    in >> datas;
+    for (const auto& user : datas) {
+        if (user["name"] == name) {
+            while (true) {
+                std::print("\n请输入密码（输入0取消）：");
+                std::cin >> password;
+                if (password == "0") {
+                    return;
+                }
+                if (user["password"] == password) {
+                    //home();
+                    return;
+                } else {
+                    std::println("  密码错误");
+                    for (float i = 3; i >= 0; i -= 0.1) {
+                        std::print("\r  {:.1f}s后重试", i);
+                        Sleep(100);
+                    }
+                    std::print("\033[3A\r\033[J");
+                }
+            }
+        }
+    }
+    std::print("用户不存在");
+    Sleep(1000);
+}
+
+
+void resetPassword(nlohmann::json datas, const std::string userFilePath) {
+    std::string name, password;
+    std::print("\n请输入用户名（输入0取消）：");
+    std::cin >> name;
+    if (name == "0") {
+        return;
+    }
+    std::ifstream in(userFilePath);
+    in >> datas;
+    for (auto& user : datas) {
+        if (user["name"] == name) {
+            while (true) {
+                std::print("\n请输入密码（输入0取消）：");
+                std::cin >> password;
+                if (password == "0") {
+                    return;
+                }
+                if (user["password"] == password) {
+                    std::string newPassword;
+                    std::print("输入新密码（输入0取消）：");
+                    std::cin >> newPassword;
+                    if (newPassword == "0") {
+                        return;
+                    }
+                    user["password"] = newPassword;
+                    std::ofstream out(userFilePath);
+                    out << datas.dump(2);
+                    return;
+                } else {
+                    std::println("  密码错误");
+                    for (float i = 3; i >= 0; i -= 0.1) {
+                        std::print("\r  {:.1f}s后重试", i);
+                        Sleep(100);
+                    }
+                    std::print("\033[3A\r\033[J");
+                }
+            }
+        }
+    }
+    std::print("用户不存在");
+    Sleep(1000);
 }

@@ -73,8 +73,27 @@ void home(std::string name) {
                 Sleep(1000);
                 break;
             }
+            case 2:
+            {
+                std::ifstream in(goodsFilePath);
+                json data = json::array();
+                in >> datas;
+                std::string goodsName;
+                std::printf("请输入商品名称：");
+                std::cin >> goodsName;
+                for (auto& goods : datas) {
+                    if (goods["name"] == goodsName && goods["owner"] != name) {
+                        
+                    }
+                }
+            }
             
             default:
+                std::println("请输入有效的操作。");
+                for (float i = 3; i >= 0; i -= 0.1) {
+                    std::print("\r  {:.1f}s后重试", i);
+                    Sleep(100);
+                }
                 break;
             }
         } else {

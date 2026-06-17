@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include "terminal.hpp"
+#include "main.hpp"
 
 int main() {
     SetConsoleOutputCP(65001);

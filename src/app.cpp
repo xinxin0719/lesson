@@ -10,8 +10,9 @@
 #include <limits>
 #include <string>
 #include <fstream>
+#include <Windows.h>
 
-#include "terminal.hpp"
+#include "main.hpp"
 #include "../thirdparty/nlohmann/json.hpp"
 
 void sysOpera() {
@@ -64,8 +65,8 @@ void sysOpera() {
                         Sleep(100);
                     }
                     std::print("\033[H\033[J");
-                    goto start;
                 }
+                goto start;
                 break;
             }
             
